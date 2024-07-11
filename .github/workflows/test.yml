@@ -1,0 +1,14 @@
+name: Perl tests
+on: [ push, pull_request ]
+jobs:
+  perl_tester:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: uses install-with-cpanm
+        uses: perl-actions/install-with-cpanm@stable
+        with:
+          cpanfile: "cpanfile"
+          sudo: false
+      - name: Run tests
+        run: prove
