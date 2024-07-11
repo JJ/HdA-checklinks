@@ -9,6 +9,6 @@ jobs:
         uses: perl-actions/install-with-cpanm@stable
         with:
           cpanfile: "cpanfile"
-          sudo: false
+          sudo: true
       - name: Run tests
         run: prove
