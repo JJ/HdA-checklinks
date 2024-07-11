@@ -13,6 +13,7 @@ my %report = checkAllLinks( @links );
 
 foreach my $link (keys %report ) {
   if ( $report{$link}->{'status'} eq "200 OK" ) {
+    print $link, "\n";
     if ( $link eq $report{$link}->{'URL'} ) {
       $content =~ s/$link/$link → «$report{$link}->{'title'}»/;
     } else {

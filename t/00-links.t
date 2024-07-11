@@ -13,7 +13,7 @@ my @links = extractLinksFromText( $text );
 cmp_ok( $#links, ">=", 10);
 
 my %report = checkAllLinks( @links );
-cmp_ok( scalar keys %report , ">=", 10 );
+cmp_ok( scalar keys %report , ">=", 12 );
 
 foreach my $link (keys %report ) {
   if ( $report{$link}->{'status'} eq "200 OK" ) {
