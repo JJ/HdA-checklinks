@@ -13,7 +13,11 @@ my %report = checkAllLinks( @links );
 
 foreach my $link (keys %report ) {
   if ( $report{$link}->{'status'} eq "200 OK" ) {
-    $content =~ s/$link/$report{$link}->{'URL'} → «$report{$link}->{'title'}»/
+    if ( $link eq $report{$link}->{'URL'} ) {
+      $content =~ s/$link/$link → «$report{$link}->{'title'}»/;
+    } else {
+      $content =~ s/$link/\[ $link \] ➡ $report{$link}->{'URL'} → «$report{$link}->{'title'}»/
+    }
   } else {
     $content =~ s/$link/✘ $link/
   }
