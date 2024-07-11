@@ -16,4 +16,11 @@ cmp_ok( $#links, ">=", 13);
 my %report = checkAllLinks( @links );
 say keys(%report);
 cmp_ok( scalar keys %report , ">=", 13 );
+
+foreach my $link (keys %report ) {
+  say Dumper $report{$link};
+  if ( $report->{$link}{'status'} eq "200 OK" ) {
+    ok( $report->{$link}{'title'}, "$link has title" );
+  }
+}
 done_testing();

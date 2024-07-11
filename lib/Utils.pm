@@ -1,5 +1,4 @@
 use LWP::Simple;
-use Data::Dumper;
 use v5.14;
 
 sub extractLinksFromText {
@@ -17,6 +16,9 @@ sub checkAllLinks {
     my %result;
     if ( $response->is_success ) {
       $result{'URL'} = $response->request->uri->as_string;
+      my $content = $response->decoded_content;
+      my ($title) = $content =~ m{<TITLE>(.*?)</TITLE>}gism;
+      $result{'title'} = $title;
     }
     $result{'status'} = $response->status_line;
     $report{$link} = \%result;
