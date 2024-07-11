@@ -16,7 +16,7 @@ sub checkAllLinks {
     my %result;
     if ( $response->is_success ) {
       $result{'URL'} = $response->request->uri->as_string;
-      my $content = $response->decoded_content;
+      my $content = $response->content;
       my ($title) = $content =~ m{<TITLE>(.*?)</TITLE>}gism;
       $result{'title'} = $title;
     }
