@@ -4,6 +4,8 @@ use lib qw(../lib lib);
 use Utils;
 use File::Slurp;
 
+use v5.14;
+
 my $fileName = shift || die "Need a file name";
 
 my $content = read_file($fileName) || die "File $fileName does not work";
@@ -12,6 +14,7 @@ my @links = extractLinksFromText($content);
 my %report = checkAllLinks( @links );
 
 foreach my $link (keys %report ) {
+  say "→ $link ⇒", $report{$link}->{'status'};
   if ( $report{$link}->{'status'} eq "200 OK" ) {
     if ( $link eq $report{$link}->{'URL'} ) {
       $content =~ s/$link/$link → «$report{$link}->{'title'}»/;
