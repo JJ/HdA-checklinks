@@ -14,7 +14,6 @@ my @links = extractLinksFromText($content);
 my %report = checkAllLinks( @links );
 
 foreach my $link (keys %report ) {
-  say "→ $link ⇒", $report{$link}->{'status'};
   if ( $report{$link}->{'status'} eq "200 OK" ) {
     if ( $link eq $report{$link}->{'URL'} ) {
       $content =~ s/$link/$link → «$report{$link}->{'title'}»/;
